@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         swiftUI.view.frame = CGRect(x: 150, y: 150, width: 150, height: 150)
         self.addChild(swiftUI)
         view.addSubview(swiftUI.view)
+        swiftUI.view.isUserInteractionEnabled = false
     }
 
 
