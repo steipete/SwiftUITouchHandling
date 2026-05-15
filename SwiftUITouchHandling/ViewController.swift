@@ -8,39 +8,50 @@
 import UIKit
 import SwiftUI
 
-
-class CGRectBox {
+final class CGRectBox {
     var rect: CGRect?
 }
 
-// Using a subclass is pretty self-explainatory I think.
-class SwiftUIViewHostingController: UIHostingController<SwiftUIView>, UIGestureRecognizerDelegate {
-    /// We can't use a `@Binding` or a `@State` here because we must pass it to `SwiftUIView` during `init`.
-    /// Anyway a binding would make the view's `body` to be recomputed and we don't really want it.
-    let rectBox = CGRectBox()
-    
+final class PassthroughView: UIView {
+    let activeRectBox: CGRectBox
+
+    init(activeRectBox: CGRectBox) {
+        self.activeRectBox = activeRectBox
+        super.init(frame: .zero)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        activeRectBox.rect?.contains(point) ?? false
+    }
+}
+
+final class SwiftUIViewHostingController: UIViewController {
+    private let rectBox = CGRectBox()
+    private lazy var hostingController = UIHostingController(rootView: SwiftUIView(activeRectBox: rectBox))
+
     init() {
-        super.init(rootView: SwiftUIView(activeRectBox: rectBox))
-        
-        // SwiftUI (or UIKit ?) set a special gesture recognizer. Let's be its delegate.
-        view.gestureRecognizers?.first?.delegate = self
+        super.init(nibName: nil, bundle: nil)
     }
-    
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        guard let activeRect = rectBox.rect else { return true }
-        
-        if activeRect.contains(touch.location(in: view)) {
-            print("Tapped on button")
-        } else {
-            print("Tapped on background")
-        }
-        
-        /// Returning `false` may disable the button but the events won't be forwarded to the UIKit button.
-        return true
+
+    override func loadView() {
+        view = PassthroughView(activeRectBox: rectBox)
     }
-    
-    @objc required dynamic init?(coder aDecoder: NSCoder) {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        addChild(hostingController)
+        hostingController.view.frame = view.bounds
+        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(hostingController.view)
+        hostingController.didMove(toParent: self)
+    }
+
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -64,6 +75,6 @@ class ViewController: UIViewController {
         swiftUI.view.frame = CGRect(x: 150, y: 150, width: 150, height: 150)
         self.addChild(swiftUI)
         view.addSubview(swiftUI.view)
+        swiftUI.didMove(toParent: self)
     }
 }
-
