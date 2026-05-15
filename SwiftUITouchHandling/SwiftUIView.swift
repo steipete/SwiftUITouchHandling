@@ -8,22 +8,34 @@
 import SwiftUI
 
 struct SwiftUIView: View {
+    private struct ButtonRectPreferenceKey: PreferenceKey {
+        static var defaultValue: CGRect? { nil }
+
+        static func reduce(value: inout CGRect?, nextValue: () -> CGRect?) {
+            value = nextValue() ?? value
+        }
+    }
+
+    let activeRectBox: CGRectBox
+
     var body: some View {
-        VStack {
-            Button("SwiftUI Button") {
-                print("SwiftUI tapped")
-            }.border(Color.black)
-        }.frame(minWidth: 0,
-                maxWidth: .infinity,
-                minHeight: 0,
-                maxHeight: .infinity,
-                alignment: .center
-        ).background(Color.red)
+        GeometryReader { proxy in
+            VStack {
+                Button("SwiftUI Button") {
+                    print("SwiftUI tapped")
+                }
+                .anchorPreference(key: ButtonRectPreferenceKey.self, value: Anchor<CGRect>.Source.bounds) { proxy[$0] }
+                .border(Color.black)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.red)
+        }
+        .onPreferenceChange(ButtonRectPreferenceKey.self) { activeRectBox.rect = $0 }
     }
 }
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUIView()
+        SwiftUIView(activeRectBox: .init())
     }
 }
