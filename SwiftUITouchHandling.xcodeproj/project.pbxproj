@@ -14,9 +14,22 @@
 		78A02CC12546F0B500D42A45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78A02CC02546F0B500D42A45 /* Assets.xcassets */; };
 		78A02CC42546F0B500D42A45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A02CC22546F0B500D42A45 /* LaunchScreen.storyboard */; };
 		78A02CCD2546F1E000D42A45 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A02CCC2546F1E000D42A45 /* SwiftUIView.swift */; };
+		A10000000000000000000001 /* PassthroughViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000002 /* PassthroughViewTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A10000000000000000000003 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78A02CAC2546F0B200D42A45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78A02CB32546F0B200D42A45;
+			remoteInfo = SwiftUITouchHandling;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A10000000000000000000002 /* PassthroughViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughViewTests.swift; sourceTree = "<group>"; };
+		A10000000000000000000004 /* SwiftUITouchHandlingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUITouchHandlingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A02CB42546F0B300D42A45 /* SwiftUITouchHandling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUITouchHandling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A02CB72546F0B300D42A45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A02CB92546F0B300D42A45 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +42,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78A02CB12546F0B200D42A45 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -39,10 +58,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A10000000000000000000006 /* SwiftUITouchHandlingTests */ = {
+			isa = PBXGroup;
+			children = (A10000000000000000000002 /* PassthroughViewTests.swift */);
+			path = SwiftUITouchHandlingTests;
+			sourceTree = "<group>";
+		};
 		78A02CAB2546F0B200D42A45 = {
 			isa = PBXGroup;
 			children = (
 				78A02CB62546F0B300D42A45 /* SwiftUITouchHandling */,
+				A10000000000000000000006 /* SwiftUITouchHandlingTests */,
 				78A02CB52546F0B300D42A45 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				78A02CB42546F0B300D42A45 /* SwiftUITouchHandling.app */,
+				A10000000000000000000004 /* SwiftUITouchHandlingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +100,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A10000000000000000000007 /* SwiftUITouchHandlingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000008;
+			buildPhases = (
+				A10000000000000000000009 /* Sources */,
+				A10000000000000000000005 /* Frameworks */,
+			);
+			buildRules = ();
+			dependencies = (A1000000000000000000000A /* PBXTargetDependency */);
+			name = SwiftUITouchHandlingTests;
+			productName = SwiftUITouchHandlingTests;
+			productReference = A10000000000000000000004 /* SwiftUITouchHandlingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		78A02CB32546F0B200D42A45 /* SwiftUITouchHandling */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78A02CC82546F0B500D42A45 /* Build configuration list for PBXNativeTarget "SwiftUITouchHandling" */;
@@ -118,6 +159,7 @@
 			projectRoot = "";
 			targets = (
 				78A02CB32546F0B200D42A45 /* SwiftUITouchHandling */,
+				A10000000000000000000007 /* SwiftUITouchHandlingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -136,6 +178,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A10000000000000000000009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (A10000000000000000000001 /* PassthroughViewTests.swift in Sources */);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78A02CB02546F0B200D42A45 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -148,6 +196,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1000000000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 78A02CB32546F0B200D42A45 /* SwiftUITouchHandling */;
+			targetProxy = A10000000000000000000003;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		78A02CBD2546F0B300D42A45 /* Main.storyboard */ = {
@@ -169,6 +225,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A1000000000000000000000B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y5PE65HELJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@loader_path/Frameworks");
+				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.SwiftUITouchHandlingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUITouchHandling.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUITouchHandling";
+			};
+			name = Debug;
+		};
+		A1000000000000000000000C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y5PE65HELJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@loader_path/Frameworks");
+				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.SwiftUITouchHandlingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUITouchHandling.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUITouchHandling";
+			};
+			name = Release;
+		};
 		78A02CC62546F0B500D42A45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -326,6 +414,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A10000000000000000000008 /* Build configuration list for SwiftUITouchHandlingTests */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000000B /* Debug */,
+				A1000000000000000000000C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		78A02CAF2546F0B200D42A45 /* Build configuration list for PBXProject "SwiftUITouchHandling" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
