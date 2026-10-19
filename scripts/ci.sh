@@ -14,7 +14,13 @@ cleanup() {
 }
 trap cleanup EXIT
 
-runtime=${SIMULATOR_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-5}
+runtime=${SIMULATOR_RUNTIME:-$(xcrun simctl list runtimes --json | python3 -c '
+import json, sys
+runtimes = [r for r in json.load(sys.stdin)["runtimes"] if r["isAvailable"] and ".iOS-" in r["identifier"]]
+if not runtimes:
+    raise SystemExit("No available iOS simulator runtime is installed")
+print(max(runtimes, key=lambda r: tuple(map(int, r["version"].split("."))))["identifier"])
+')}
 device_id=$(xcrun simctl create SwiftUITouchHandling-CI com.apple.CoreSimulator.SimDeviceType.iPhone-17 "$runtime")
 xcrun simctl boot "$device_id"
 xcrun simctl bootstatus "$device_id" -b
