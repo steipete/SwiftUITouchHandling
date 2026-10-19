@@ -24,12 +24,12 @@ Or maybe there's a way?
 The sample uses Apple's UIKit and SwiftUI frameworks, with no third-party dependencies.
 Open `SwiftUITouchHandling.xcodeproj` and run the `SwiftUITouchHandling` scheme on an iOS simulator.
 
-For the same validation used by CI, install Xcode with the iOS 26.5 simulator runtime and run:
+For the same validation used by CI, install Xcode with an iOS simulator runtime and run:
 
 ```sh
 ./scripts/ci.sh
 ```
 
-The script builds and runs all XCTest tests in Debug, builds Release for iOS devices and the simulator, then installs and launches the Release app and checks that it stays running. The tests exercise touch forwarding through an overlapping UIKit view hierarchy, including changes to the active rectangle. The script creates its own simulator and removes it and its build products on exit. Set `SIMULATOR_RUNTIME` to a different installed runtime identifier if needed.
+The script builds and runs all XCTest tests in Debug, builds Release for iOS devices and the simulator, then installs and launches the Release app and checks that it stays running. The tests exercise touch forwarding through an overlapping UIKit view hierarchy, including changes to the active rectangle. The script selects the newest available iOS runtime, creates its own simulator, and removes it and its build products on exit. Set `SIMULATOR_RUNTIME` to a different installed runtime identifier if needed.
 
-GitHub Actions runs this build/test/launch check on pull requests and pushes to `main`, using Xcode 26.6 on macOS 26. No signing credentials are needed for these simulator and compile-only device builds.
+GitHub Actions runs this build/test/launch check on pull requests and pushes to `main`, using the default Xcode 27 toolchain on the Apple silicon `xcode-27` runner. The iOS deployment target remains 15.0. No signing credentials are needed for these simulator and compile-only device builds.
